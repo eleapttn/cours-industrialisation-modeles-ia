@@ -4,9 +4,10 @@ import streamlit as st
 # access the environment variables
 ai_endpoint_model = "Mixtral-8x7B-Instruct-v0.1"
 ai_endpoint_url = "https://mixtral-8x7b-instruct-v01.endpoints.kepler.ai.cloud.ovh.net/api/openai_compat/v1"
+
 ai_endpoint_token = "ADD YOUR TOKEN"
 
-# Streamlit interface
+# streamlit interface
 with st.container():
     st.title("💬 Assistant Chatbot")
 
@@ -14,15 +15,15 @@ messages_container = st.container()
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "system", 
-                                     "content": "Je suis AVA, un assistant intelligent et bienveillant!", 
+                                     "content": "Welcome, I'm AVA an assistant!", 
                                      "avatar": "🤖"}]
 
-# Affichage des messages précédents
+# display previous messages
 with messages_container:
     for msg in st.session_state.messages:
         st.chat_message(msg["role"], avatar=msg["avatar"]).write(msg["content"])
 
-# Saisie utilisateur
+# user input
 user_input = st.chat_input("Inter your message...")
 if user_input:
     client = OpenAI(
@@ -39,6 +40,7 @@ if user_input:
         messages=st.session_state.messages,
         temperature=0,
         max_tokens=1024,
+        
     )
     
     msg = response.choices[0].message.content
