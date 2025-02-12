@@ -12,4 +12,4 @@
 - Exercice 2 : Comparaison de YOLOv11n et YOLOv11x avec Weights & Biases
 - Exercice 3 : Création d'un chatbot
 
-[!Chatbot Overview](assets/chatbot.png)
+![Chatbot Overview](assets/chatbot.png)
